@@ -9,4 +9,4 @@ Functionality :
 
 ![Image description](https://miro.medium.com/max/2628/1*M0hdLsgbzelOFuq-1BVH-g.png)
 
-Thanks or visiting !!
+Thanks for visiting !!
