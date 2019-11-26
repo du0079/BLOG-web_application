@@ -63,8 +63,21 @@ app.post("/blogs",function(req,res){
       res.redirect("/blogs");
     }
   });
-     
 });
+
+   
+// Show route
+app.get("/blogs/:id",function(req,res){
+   Blog.findById(req.params.id,function(err,blog){
+    if(err){
+      res.render("/blogs");
+    }else{
+      res.render("show",{blog: blog});
+    }
+   });
+});
+
+
 app.listen(3000,function(){
  console.log("Tested OK");
 });
