@@ -6,6 +6,7 @@ var bodyparser =require("body-parser"),
 // App congiguration==========================================================================================
 app.set("view engine","ejs");
 app.use(express.static("public"));
+app.use(express.static("views"));
 mongoose.connect('mongodb://localhost/Blog_app', {
   useNewUrlParser: true,
   useUnifiedTopology: true
