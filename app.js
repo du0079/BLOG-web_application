@@ -6,6 +6,7 @@ var bodyparser =require("body-parser"),
 // App congiguration==========================================================================================
 app.set("view engine","ejs");
 app.use(express.static("public"));
+app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static("views"));
 mongoose.connect('mongodb://localhost/Blog_app', {
   useNewUrlParser: true,
@@ -31,7 +32,7 @@ var Blog = mongoose.model("Blog",BlogSchema);
 
 
 //Routes
-
+//Index route
 app.get("/",function(req,res){
       res.redirect("/blogs");
 });
@@ -44,10 +45,26 @@ app.get("/blogs",function(req,res){
       res.render("index",{blogs: blogs});
     }
   });
-	
 });
 
 
+//New route
+app.get("/blogs/new",function(req,res){
+  res.render("new");
+});
+
+
+//postroute
+app.post("/blogs",function(req,res){
+  Blog.create(req.body.blog ,function(err,newBlog){
+    if(err){
+      res.render("new");
+    }else{
+      res.redirect("/blogs");
+    }
+  });
+     
+});
 app.listen(3000,function(){
  console.log("Tested OK");
 });
